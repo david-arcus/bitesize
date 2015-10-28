@@ -28,7 +28,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       // Ionic serve syntax
       db = window.openDatabase('nz_food_composition.db', '1.0', 'Bitesize', -1);
     }
+    
   });
+  
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
