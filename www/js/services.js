@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('bitesize.services', [])
 
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
@@ -53,7 +53,7 @@ angular.module('starter.services', [])
   
   var self = this;
 
-  // Handle query's and potential errors
+  // Handle queries and potential errors
   self.query = function (query, parameters) {
     parameters = parameters || [];
     var q = $q.defer();
@@ -104,9 +104,9 @@ angular.module('starter.services', [])
 
   self.getItemsInCategory = function(categoryId) {
     var parameters = [categoryId];
-    return DBA.query("SELECT id, letter_prefix, category_name FROM categories WHERE id = (?)", parameters)
+    return DBA.query("SELECT short_food_name FROM food_items WHERE category_id = (?) AND parent = 1", parameters)
       .then(function(result) {
-        return DBA.getById(result);
+        return DBA.getAll(result);
       });
   }
 
