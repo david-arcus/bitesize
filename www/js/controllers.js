@@ -2,7 +2,7 @@ angular.module('bitesize.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('ChatsCtrl', function($scope, Products) {
+.controller('CategoriesController', function($scope, Products) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -24,17 +24,23 @@ angular.module('bitesize.controllers', [])
     
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Products) {
+.controller('CategoryItemsController', function($scope, $stateParams, Products) {
   
-  var categoryId = $stateParams.chatId;
+  var categoryId = $stateParams.categoryId;
   
   $scope.items = [];
   $scope.items = null;
-
+  
+  $scope.category = [];
+  $scope.category = null;
+  
   $scope.getItems = function() {
-    Products.getItemsInCategory(categoryId).then(function(result){
+    
+    Products.getItemsInCategory(categoryId).then(function(result) {
       $scope.items = result;
+      $scope.category = result[0];
     });
+    
   }
   
   $scope.getItems();
