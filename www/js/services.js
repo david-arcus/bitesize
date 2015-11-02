@@ -68,6 +68,14 @@ angular.module('bitesize.services', [])
         return DBA.getById(result);
     });
   }
+  
+  self.getItem = function(itemId) {
+    var parameters = [itemId];
+    return DBA.query("SELECT id, category_name FROM categories WHERE id = (?)", parameters)
+      .then(function(result) {
+        return DBA.getById(result);
+    });
+  }
 
   return self;
 })
