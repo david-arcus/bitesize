@@ -47,6 +47,25 @@ angular.module('bitesize.controllers', [])
   
 })
 
+.controller('ItemController', function($scope, $stateParams, Products) {
+  
+  var itemId = $stateParams.itemId;
+  
+  $scope.item = [];
+  $scope.item = null;
+  
+  $scope.getItem = function() {
+    
+    Products.getItem(itemId).then(function(result) {
+      $scope.item = result;
+    });
+    
+  }
+  
+  $scope.getItem();
+  
+})
+
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
